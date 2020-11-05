@@ -1,0 +1,41 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/date.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <form class="login-form" action="/add-patient" method="POST">
+
+            <div class="form-control">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="">
+            </div>
+
+            <div class="form-control">
+                <label for="email">E-Mail</label>
+                <input type="email" name="email" id="email" placeholder="">
+            </div>
+
+            <div class="form-control">
+                <label for="dateOfB">Date of Birth</label>
+                <input type="date" id="dateOfB" name="dateOfB">
+            </div>
+
+            <div class="form-control">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn" type="submit">Add Patient</button>
+        </form>
+    </main>
+    
+<%- include('../includes/end.ejs') %>

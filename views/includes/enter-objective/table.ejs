@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col">
+        <div class="form-group row">
+            <label for="fileNumber" class="col-sm-3 col-form-label">Visit ID:</label>
+            <div class="col-sm-9">
+                <input type="text" readonly class="form-control text-right" id="fileNumber" value="<%= visit._id %>">
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="form-group row">
+            <label for="fileNumber" class="col-sm-3 col-form-label">Name:</label>
+            <div class="col-sm-9">
+                <input type="text" readonly class="form-control text-right" id="fileNumber" value="<%= visit.patientId.name %>">
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="form-group row">
+            <label for="fileNumber" class="col-sm-3 col-form-label">Time In:</label>
+            <div class="col-sm-9">
+                <input type="text" readonly class="form-control text-right" id="fileNumber" value="<%= visit.timeIn %>">
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="form-group row">
+            <label for="fileNumber" class="col-sm-4 col-form-label">Time spent:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control text-right" id="fileNumber" value="<%= //parseInt(visit.timeOut) - parseInt(visit.timeIn)parseInt %>">
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="form-group row">
+            <label for="fileNumber" class="col-sm-4 col-form-label">Time out:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control text-right" id="fileNumber" value="<%= visit.timeOut %>">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive-md mb-3 mt-3 table-wrapper-scroll-y my-custom-scrollbar">
+    
+        <table class="table table-bordered table-striped"> 
+            <!-- <caption>List of users</caption> -->
+            <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Date of Visit</th>
+                <th scope="col">Doctor</th>
+                <th scope="col">Cersyn</th>
+                <th scope="col">Cersag</th>
+                <th scope="col">Cermeth</th>
+                <th scope="col">Thoseg</th>
+                <th scope="col">Thometh</th>
+                <th scope="col">Pelcucdere</th>
+                <th scope="col">Lumseg</th>
+                <th scope="col">Dermeth</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let visit of patientVisits) {%> 
+                    <tr>
+                        <th scope="row"><%= visit._id %></th>
+                        <td><%= visit.visitDate.toDateString() %></td>
+                        <td><%= visit.userId.name %></td>
+                        <td><%= visit.adjustmentId.cersyn %></td>
+                        <td><%= visit.adjustmentId.cersag %></td>
+                        <td><%= visit.adjustmentId.cermeth %></td>
+                        <td><%= visit.adjustmentId.thoseg %></td>
+                        <td><%= visit.adjustmentId.thometh %></td>
+                        <td><%= visit.adjustmentId.pelcucdere %></td>
+                        <td><%= visit.adjustmentId.lumseg %></td>
+                        <td><%= visit.adjustmentId.dermeth %></td>
+                    </tr>
+                <% } %> 
+            </tbody>  
+    </table>
+</div>

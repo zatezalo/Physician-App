@@ -1,0 +1,32 @@
+<form action="/schedule/enter-objective" class="" method="POST">
+    <div class="row">
+        <div class="col">
+
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-3 col-form-label">Doctors Notes</label>
+                <div class="col-sm-9">
+                    <textarea type="text" readonly class="form-control" id="staticEmail" value="" rows="3">????</textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-3 col-form-label">Treating Doctor</label>
+                <div class="col-sm-9">
+                    <input type="text" readonly class="form-control text-right" id="staticEmail" value="<%= visit.userId.name %> ">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-secondary" href="/schedule">Back to Visits</a>
+        </div>
+        <div class="col">
+            <button class="btn btn-secondary float-right" name="submit" value="enter-objectives" type="submit">Enter Objectives</button>
+        </div>
+    </div>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <input type="hidden" name="visitId" value="<%= visit._id %>">
+    <input type="hidden" name="patientId" value="<%= visit.patientId._id %>">
+</form>

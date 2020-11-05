@@ -1,0 +1,17 @@
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link text-dark <%= urlString === 'notes' ? 'active' : '' %>" href="/schedule/enter-objective/<%= visit._id %>">NOTES/XRAY</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark <%= urlString === 'subjective' ? 'active' : '' %>" href="/schedule/enter-objective/<%= visit._id %>/subjective">SUBJECTIVE</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark <%= urlString === 'adjustment' ? 'active' : '' %>" href="/schedule/enter-objective/<%= visit._id %>/adjustment">ADJUSTMENTS</a>
+    </li>
+    <!-- <li class="nav-item"> 
+      <a class="nav-link text-dark <%= urlString === 'thoracic' ? 'active' : '' %>" href="/schedule/enter-objective/<%= visit._id %>/thoracic">THORACIC</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark <%= urlString === 'lumbar' ? 'active' : '' %>" href="/schedule/enter-objective/<%= visit._id %>/lumbar">LUMBAR/PELVICE</a>
+    </li> -->
+</ul>

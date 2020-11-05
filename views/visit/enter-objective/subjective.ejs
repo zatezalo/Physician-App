@@ -1,0 +1,118 @@
+<%- include('../../includes/head.ejs') %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/table.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <%- include('../../includes/navigation.ejs') %>
+   
+    <main>
+      <%- include('../../includes/enter-objective/table.ejs') %>
+
+      <div class="row">
+        <div class="col-sm-8">
+
+          <%- include('../../includes/enter-objective/tabs.ejs') %>
+
+          <div class="table-responsive-md mb-3 mt-3 table-wrapper-scroll-y my-custom-scrollbar">
+
+            <table class="table table-bordered table-striped"> 
+              <!-- <caption>List of users</caption> -->
+              <thead>
+                  <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Date of Visit</th>
+                  <th scope="col">Notes</th>
+                  <th scope="col">Pain</th>
+                  <th scope="col">Assesment</th>
+                  <th scope="col">Plan</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <% for(let visit of patientVisits) {%> 
+                      <tr>
+                          <th scope="row"><%= visit._id %></th>
+                          <td><%= visit.visitDate.toDateString() %></td>
+                          <td><%= visit.note %></td>
+                          <td><%= visit.pain %></td>
+                          <td><%= visit.assessment %></td>
+                          <td><%= visit.plan %></td>
+                      </tr>
+                  <% } %> 
+              </tbody>  
+            </table>
+          </div>
+
+          <form action="/schedule/enter-objective" class="row" method="POST">
+
+            <div class="col-sm-6">
+              <div class="form-group row">
+                <label for="note" class="col-sm-4 col-form-label">Doctors Daily Notes</label>
+                <div class="col-sm-11">
+                    <textarea type="text" class="form-control" id="note" name="note" value="" rows="4"><%= visit.note %> </textarea>
+                </div>
+              </div>
+            </div>
+              
+            <div class="col-sm-6">
+
+                <div class="form-inline mt-3 mb-3">
+                  <label class="col-sm-3" for="pain">Select Pain</label>
+                  <select class="custom-select  col-sm-8" id="pain" name="pain" value>
+                    <option selected><%= visit.pain %></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                  </select>
+                </div>
+
+                <div class="form-inline mt-1 mb-3">
+                  <label class="col-sm-3" for="assessment">Select Assesment</label>
+                  <select class="custom-select col-sm-8" id="assessment" name="assessment">
+                    <option selected><%= visit.assessment %></option>
+                    <option value="As expected">As expected</option>
+                    <option value="Slower then expected">Slower then expected</option>
+                    <option value="See Dr's notes">See Dr's notes</option>
+                    <option value="See intake forms">See intake forms</option>
+                  </select>
+                </div>
+
+                <div class="form-inline mt-1 mb-3">
+                  <label class="col-sm-3" for="plan">Select Plan</label>
+                  <select class="custom-select col-sm-8" id="plan" name="plan">
+                    <option selected><%= visit.plan %></option>
+                    <option value="Three times a week">Three times a week</option>
+                    <option value="Two times a week">Two times a week</option>
+                    <option value="Once a week">Once a week</option>
+                    <option value="Every other week">Every other week</option>
+                    <option value="Once a month">Once a month</option>
+                  </select>
+                </div>
+
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <input type="hidden" name="visitId" value="<%= visit._id %>">
+                <input type="hidden" name="patientId" value="<%= visit.patientId._id %>">
+                <button class="btn btn-secondary float-right mr-5" name="submit" value="saveSubjective" type="submit">Save Subjective</button>
+              
+            </div>
+          </form>
+          
+        </div>
+
+        <div class="col-sm-4">
+          <%- include('../../includes/enter-objective/form.ejs') %>
+        </div>
+      </div>
+    </main>
+    
+<%- include('../../includes/end.ejs') %>

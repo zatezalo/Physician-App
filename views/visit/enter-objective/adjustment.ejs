@@ -1,0 +1,149 @@
+<%- include('../../includes/head.ejs') %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/table.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <%- include('../../includes/navigation.ejs') %>
+   
+
+    <main>
+        <%- include('../../includes/enter-objective/table.ejs') %>
+
+
+        <div class="row">
+            <div class="col-sm-8">
+              <%- include('../../includes/enter-objective/tabs.ejs') %>
+              <form action="/schedule/enter-objective"  method="POST">
+                <div class="row">
+
+                  <div class="col-sm-4">
+                    <h2 class="ml-4">Cervical</h2>
+
+                    <div class="form-inline mt-3 mb-3">
+                      <label class="col-sm-5" for="cervSynd">Select Cerv Synd</label>
+                      <select class="custom-select col-sm-7" id="cervSynd" name="cervSynd" >
+                        <option selected><%= visit.adjustmentId.cersyn %></option>
+                        <option value="tf/CS">tf/CS</option>
+                        <option value="Rt/CS">Rt/CS</option>
+                        <option value="B/CS">B/CS</option>
+                        <option value="No/CS">No/CS</option>
+                      </select>
+                    </div>
+    
+                    <div class="form-inline mt-1 mb-3">
+                      <label class="col-sm-5" for="cervicalVertebrals">Select Vertebrals</label>
+                      <select class="custom-select col-sm-7" multiple id="cervicalVertebrals" name="cervicalVertebrals">
+                        <option selected><%= visit.adjustmentId.cersag %></option>
+                        <option value="C1">C1</option>
+                        <option value="C2">C2</option>
+                        <option value="C3">C3</option>
+                        <option value="C4">C4</option>
+                        <option value="C5">C5</option>
+                        <option value="C6">C6</option>
+                        <option value="C7">C7</option>
+                      </select>
+                    </div>
+    
+                    <div class="form-inline mt-1 mb-3">
+                      <label class="col-sm-5" for="cervicalMethod">Select Method</label>
+                      <select class="custom-select col-sm-7" id="cervicalMethod" name="cervicalMethod">
+                        <option selected><%= visit.adjustmentId.cermeth %></option>
+                        <option value="Thompson">Thompson</option>
+                        <option value="Sup Div">Sup Div</option>
+                        <option value="Pron Div">Pron Div</option>
+                        <option value="HIO">HIO</option>
+                        <option value="Activator">Activator</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <h2 class="ml-4">Thoracic</h2>
+                    <div class="form-inline mt-1 mb-3">
+                      <label class="col-sm-5" for="thoracicVertebrals">Select Vertebrals</label>
+                      <select class="custom-select col-sm-7" multiple id="thoracicVertebrals" name="thoracicVertebrals">
+                        <option selected><%= visit.adjustmentId.thoseg %></option>
+                        <option value="T1">T1</option>
+                        <option value="T2">T2</option>
+                        <option value="T3">T3</option>
+                        <option value="T4">T4</option>
+                        <option value="T5">T5</option>
+                        <option value="T6">T6</option>
+                        <option value="T7">T7</option>
+                        <option value="T8">T8</option>
+                        <option value="T9">T9</option>
+                        <option value="T10">T10</option>
+                        <option value="T11">T11</option>
+                        <option value="T12">T12</option>
+                      </select>
+                    </div>
+    
+                    <div class="form-inline mt-1 mb-3">
+                      <label class="col-sm-5" for="thoracicMethod">Select Method</label>
+                      <select class="custom-select col-sm-7" id="thoracicMethod" name="thoracicMethod">
+                        <option selected><%= visit.adjustmentId.thometh %></option>
+                        <option value="Thompson">Supine</option>
+                        <option value="Sup Div">Thompson</option>
+                        <option value="Pron Div">Activator</option>
+                        <option value="HIO">Prone/Div</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <h2 class="ml-4">Lumbar/Pelvice</h2>
+                    <div class="form-inline mt-3 mb-3">
+                      <label class="col-sm-5" for="derefield">Select Derefield</label>
+                      <select class="custom-select col-sm-7" id="derefield" name="derefield">
+                        <option selected><%= visit.adjustmentId.pelcucdere %></option>
+                        <option value="tf/CS">L-/L Sacrum</option>
+                        <option value="Rt/CS">R-/R Sacrum</option>
+                        <option value="B/CS">L+/L Sacroiliac</option>
+                        <option value="No/CS">R+/R Sacroiliac</option>
+                        <option value="No/CS">Even</option>
+                      </select>
+                    </div>
+    
+                    <div class="form-inline mt-1 mb-3">
+                      <label class="col-sm-5" for="lumbarVertebrals">Select Vertebrals</label>
+                      <select class="custom-select col-sm-7" multiple id="lumbarVertebrals" name="lumbarVertebrals">
+                        <option selected><%= visit.adjustmentId.lumseg %></option>
+                        <option value="L1">L1</option>
+                        <option value="L2">L2</option>
+                        <option value="L3">L3</option>
+                        <option value="L4">L4</option>
+                        <option value="L5">L5</option>
+                        <option value="SAC">SAC</option>
+                      </select>
+                    </div>
+    
+                    <div class="form-inline mt-1 mb-3">
+                      <label class="col-sm-5" for="lumbarMethod">Select Method</label>
+                      <select class="custom-select col-sm-7" id="lumbarMethod" name="lumbarMethod">
+                        <option selected><%= visit.adjustmentId.dermeth %></option>
+                        <option value="Thompson">Thompson</option>
+                        <option value="Sup Div">Side Post</option>
+                        <option value="Activator">Activator</option>
+                      </select>
+                    </div>
+                  </div>
+
+                </div>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <input type="hidden" name="visitId" value="<%= visit._id %>">
+                <input type="hidden" name="adjustmentId" value="<%= visit.adjustmentId._id %>">
+                <button class="btn btn-secondary float-right mr-5" name="submit" value="saveAdjustment" type="submit">Save Adjustment</button>
+              </form>
+            </div>
+            
+            <div class="col-sm-4">
+              <%- include('../../includes/enter-objective/form.ejs') %>
+            </div>
+        </div>
+    </main>
+    
+<%- include('../../includes/end.ejs') %>
